@@ -1513,6 +1513,96 @@ class Message(PyrogramType, Update):
         else:
             raise ValueError("The message doesn't contain any keyboard")
 
+
+    def edit_reply_markup(self, reply_markup: "pyrogram.InlineKeyboardMarkup" = None) -> "Message":
+        """Bound method *edit_reply_markup* of :obj:`Message <pyrogram.Message>`
+
+        Use as a shortcut for:
+
+        .. code-block:: python
+
+            client.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=message.message_id,
+                reply_markup=inline_reply_markup
+            )
+
+        Example:
+            .. code-block:: python
+
+                message.edit_reply_markup(inline_reply_markup)
+
+        Args:
+            reply_markup (:obj:`InlineKeyboardMarkup`):
+                An InlineKeyboardMarkup object.
+
+        Returns:
+            On success, if edited message is sent by the bot, the edited
+            :obj:`Message <pyrogram.Message>` is returned, otherwise True is returned.
+
+        Raises:
+            :class:`RPCError <pyrogram.RPCError>` in case of a Telegram RPC error.
+        """
+        return self._client.edit_message_reply_markup(
+            chat_id=self.chat.id,
+            message_id=self.message_id,
+            reply_markup=reply_markup
+        )
+    
+    
+    def edit_caption(
+        self,
+        caption: str,
+        parse_mode: str = "",
+        reply_markup: Union[
+            "pyrogram.InlineKeyboardMarkup",
+            "pyrogram.ReplyKeyboardMarkup",
+            "pyrogram.ReplyKeyboardRemove",
+            "pyrogram.ForceReply"
+        ] = None
+    ) -> "Message":
+        """Bound method *edit_caption* of :obj:`Message <pyrogram.Message>`
+
+        Use as a shortcut for:
+
+        .. code-block:: python
+
+            client.edit_message_caption(
+                chat_id=message.chat.id,
+                message_id=message.message_id,
+                caption="hello"
+            )
+
+        Example:
+            .. code-block:: python
+
+                message.edit_caption("hello")
+
+        Args:
+            caption (``str``):
+                New caption of the message.
+
+            parse_mode (``str``, *optional*):
+                Use :obj:`MARKDOWN <pyrogram.ParseMode.MARKDOWN>` or :obj:`HTML <pyrogram.ParseMode.HTML>`
+                if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your message.
+                Defaults to Markdown.
+
+            reply_markup (:obj:`InlineKeyboardMarkup`, *optional*):
+                An InlineKeyboardMarkup object.
+
+        Returns:
+            On success, the edited :obj:`Message <pyrogram.Message>` is returned.
+
+        Raises:
+            :class:`RPCError <pyrogram.RPCError>` in case of a Telegram RPC error.
+        """
+        return self._client.edit_message_caption(
+            chat_id=self.chat.id,
+            message_id=self.message_id,
+            caption=caption,
+            parse_mode=parse_mode,
+            reply_markup=reply_markup
+        )
     def download(self, file_name: str = "", block: bool = True, progress: callable = None, progress_args: tuple = ()):
         """Bound method *download* of :obj:`Message <pyrogram.Message>`.
 
