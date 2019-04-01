@@ -1,4 +1,3 @@
-
 # Pyrogram - Telegram MTProto API Client Library for Python
 # Copyright (C) 2017-2019 Dan Tès <https://github.com/delivrance>
 #
